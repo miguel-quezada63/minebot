@@ -26,5 +26,8 @@ class PositionService {
         }
         return Math.sqrt(Math.pow((entPos1.z - entPos2.z), 2));
     }
+    getPlayerPosition(player) {
+        return;
+    }
 }
 exports.PositionService = PositionService;

@@ -25,13 +25,16 @@ class TrackingService {
         const positionDif = this.positionService.get3dPosition(botPos, playerPos);
         // If bot is within a 5 unit radius, stop bot from moving
         const yDiff = this.positionService.get1dPosition(botPos, playerPos, "y");
-        if (this.positionService.get1dPosition(botPos, playerPos, "y") >= 1 && this.positionService.get1dPosition(botPos, playerPos, "y") < 2) {
+        this.moveForward(positionDif);
+        if (yDiff >= 1 && yDiff < 1.5) {
             this.bot.setControlState("jump", true);
             setInterval(() => { this.bot.setControlState("jump", false); }, 100);
         }
-        if (positionDif <= 5) {
+    }
+    // Checks if bot is five units away, if so, move forward
+    moveForward(positionDif) {
+        if (positionDif <= 5)
             this.bot.setControlState("forward", false);
-        }
     }
     // Direct the bot to look at a 3d point
     lookAtPlayer(position) {
